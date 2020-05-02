@@ -124,6 +124,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .DS_Store
+.vscode
 output/
 sample/
 test.py
