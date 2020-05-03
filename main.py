@@ -27,6 +27,7 @@ column_dur = [
                enable_events=True, key='-Duration-Slider-')],
 ]
 
+# ---------------------- Window Layout ---------------------- #
 layout = [
     # ---------------------- File Bowser ---------------------- #
     [sg.Text('Please Choose A File (Video or Gif)', size=(35, 1))],
@@ -73,11 +74,9 @@ layout = [
         sg.Button('Convert'),
         sg.Button('Cancel'),
     ],
-
-
 ]
 
-
+# ---------------------- Create Window ---------------------- #
 window = sg.Window('Tiny GIF Converter', layout,
                    default_element_size=(40, 1), grab_anywhere=False)
 
@@ -91,7 +90,7 @@ while True:
         window['-Frames-'].update('Frames: ' + str(fps))
     elif event == 'Convert':
         window['-Output-'].update('Processing...')
-        print(values)
+        # print(values)
 
         # Setting
         if values['-File-Path-'] == 'File Path':
@@ -129,4 +128,4 @@ if save_path is None:
 sg.popup(
     'Finish',
     'The converted file is saved at {}.'.format(save_path),
-    )
+)
