@@ -1,4 +1,5 @@
-![License Badge](https://img.shields.io/badge/license-Apache%202-green)<br>
+![License Badge](https://img.shields.io/pypi/pyversions/py) ![License Badge](https://img.shields.io/hexpm/l/apa?logoColor=green)<br>
+
 
 
 <p align="center">
