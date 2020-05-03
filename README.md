@@ -1,4 +1,4 @@
-![License Badge](https://img.shields.io/badge/python-3.5%2B-blue) ![License Badge](https://img.shields.io/badge/license-Apache--2.0-green)<br>
+![License Badge](https://img.shields.io/badge/FFmpeg-4.2.2-ff69b4) ![License Badge](https://img.shields.io/badge/PySimpleGUI-4.18.2-orange) ![License Badge](https://img.shields.io/badge/python-3.5%2B-blue) ![License Badge](https://img.shields.io/badge/license-Apache--2.0-green) ![License Badge](https://img.shields.io/badge/platform-osx--64-lightgrey)<br>
 
 
 
