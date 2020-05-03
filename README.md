@@ -32,3 +32,7 @@ $ pip install pysimplegui
 ```bash
 $ python main.py
 ```
+
+## License
+
+[Apache License 2.0](LICENSE)
