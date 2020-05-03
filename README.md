@@ -81,7 +81,7 @@ subprocess.call([
 ## Appearance
 
 <p align="center">
-  <img width="600" src="./assets/screen_shot.png">
+  <img width="800" src="./assets/screen_shot.png">
 </p>
 
 ## License
