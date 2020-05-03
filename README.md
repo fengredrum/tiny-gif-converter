@@ -2,7 +2,7 @@
 
 
 <p align="center">
-  <img width="400" src="./assets/icon.png">
+  <img width="500" src="./assets/icon.png">
 </p>
 
 <h2 align=center>Tiny GIF Converter</h2>
