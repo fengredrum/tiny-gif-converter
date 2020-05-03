@@ -1,4 +1,4 @@
-![License Badge](https://img.shields.io/pypi/pyversions/py) ![License Badge](https://img.shields.io/hexpm/l/apa?logoColor=green)<br>
+![License Badge](https://img.shields.io/badge/python-3.5%2B-blue) ![License Badge](https://img.shields.io/badge/license-Apache--2.0-green)<br>
 
 
 
