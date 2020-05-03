@@ -123,7 +123,10 @@ while True:
 
 window.close()
 
-# sg.popup('Title',
-#             'The results of the window.',
-#             'The button clicked was "{}"'.format(event),
-#             'The values are', values)
+if save_path is None:
+    save_path = 'default path'
+
+sg.popup(
+    'Finish',
+    'The converted file is saved at {}.'.format(save_path),
+    )
