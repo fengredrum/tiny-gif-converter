@@ -20,3 +20,9 @@ $ brew install ffmpeg
 ```bash
 $ pip install pysimplegui
 ```
+
+## Run
+
+```bash
+$ python main.py
+```
