@@ -1,5 +1,7 @@
 import PySimpleGUI as sg
 
+from convert_to_gif import gif_converter
+
 sg.theme('DarkTeal2')
 
 split_line_size = 68
@@ -32,7 +34,7 @@ layout = [
         sg.Text('Your File', size=(13, 1),
                 auto_size_text=False, justification='right'),
         sg.InputText('File Path', key='-File-Path-'),
-        sg.FileBrowse()
+        sg.FileBrowse(),
     ],
     [sg.Text('_' * split_line_size)],
 
@@ -49,15 +51,16 @@ layout = [
                 sg.Text('Res:', justification='left'),
                 sg.InputOptionMenu(
                     ('320x240', '640x480', '800x600'), key='-Resolution-'),
-                sg.Text('FPS: 20', size=(10, 1),
-                        justification='left', key='-FPS-')
+                sg.Text('Frames: 50', size=(10, 1),
+                        justification='left', key='-Frames-')
             ],
-            [sg.Slider(range=(50, 300), default_value=100, orientation='h', size=(25, 20),
-                       enable_events=True, key='-Frame-Slider-')],
+            [sg.Slider(range=(5, 60), default_value=10, orientation='h', size=(25, 20),
+                       enable_events=True, key='-FPS-Slider-')],
             [
-                sg.Text('Output file name:'),
-                sg.InputText(default_text='out.gif',
-                             size=(12, 1), key='-Out-Name-'),
+                sg.Text('Output dir:'),
+                sg.InputText(default_text='Output Path',
+                             size=(12, 1), key='-Out-Path-'),
+                sg.FolderBrowse(key='-Out-Browse-'),
             ]
         ]),
     ],
@@ -83,12 +86,39 @@ while True:
     event, values = window.read()
     if event in (None, 'Cancel'):  # if user closes window or clicks cancel
         break
+    elif event in ('-FPS-Slider-', '-Duration-Slider-'):
+        fps = int(values['-FPS-Slider-'] * values['-Duration-Slider-'])
+        window['-Frames-'].update('Frames: ' + str(fps))
     elif event == 'Convert':
         window['-Output-'].update('Processing...')
         print(values)
-    elif event in ('-Frame-Slider-', '-Duration-Slider-'):
-        fps = int(values['-Frame-Slider-'] / values['-Duration-Slider-'])
-        window['-FPS-'].update('FPS: ' + str(fps))
+
+        # Setting
+        if values['-File-Path-'] == 'File Path':
+            load_path = None
+        else:
+            load_path = values['-File-Path-']
+
+        if values['-Out-Path-'] == 'Output Path':
+            save_path = None
+        else:
+            save_path = values['-Out-Path-']
+
+        start_time = str(values['-HH-']) + ':' + \
+            str(values['-MM-']) + ':' + str(values['-SS-'])
+        fps = int(values['-FPS-Slider-'])
+        frame_size = values['-Resolution-']
+
+        # Converting
+        if gif_converter(
+                load_path=load_path,
+                save_path=save_path,
+                start_time=start_time,
+                duration=str(values['-Duration-Slider-']),
+                fps=str(fps),
+                frame_size=frame_size,
+        ) == 'Done':
+            break
 
 
 window.close()

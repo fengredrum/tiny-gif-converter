@@ -126,6 +126,4 @@ dmypy.json
 .DS_Store
 .vscode
 output/
-sample/
 test.py
-evaluation.py
