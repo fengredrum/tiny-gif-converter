@@ -80,9 +80,10 @@ subprocess.call([
 
 ## Appearance
 
-<p align="center">
-  <img width="600" src="./assets/screen_shot.png">
-</p>
+DarkTeal2 | DarkPurple | LightBrown3
+:-----:|:-----:|:-----:
+<img width="300" src="./assets/screen_shot_0.png"> | <img width="300" src="./assets/screen_shot_1.png">|<img width="300" src="./assets/screen_shot_2.png">
+
 
 ## License
 
