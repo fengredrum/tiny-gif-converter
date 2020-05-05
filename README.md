@@ -8,7 +8,7 @@
 
 <h2 align=center>Tiny GIF Converter</h2>
  
-This is a tiny gif converter for WeChat official account writers or bloggers. This converter takes in a video or gif file, then it converts or compresses the file to a gif image, which is compatible with WeChat official account.
+This is a tiny gif converter for WeChat official account writers or bloggers. This converter takes in a video or gif file, then it converts or compresses the file to a gif image, which is compatible with WeChat official account. The program has been tested on the Mac OS X with Python 3.6 environment. Both FFmpeg and PySimpleGUI are cross-platform libraries, so it should be worked well on other OS theoretically. Please let me know if something went south in Windows or Linux.
 
 ## Requirements 
 
@@ -17,21 +17,41 @@ This is a tiny gif converter for WeChat official account writers or bloggers. Th
 
 ## Setup
 
-### MacOS
+Here is an installation guidance for Mac users. Windows and Linux are following the same setup procedure.
+
+### Mac OS X
+
+The simplest way to install FFmpeg on Mac is using [Homebrew](https://brew.sh). Run the following command in macOS Terminal (zsh) to install it:
+
+```bash
+$ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+Once it is done, use the following command to install FFmpeg:
 
 ```bash
 $ brew install ffmpeg
 ```
 
+The last step is installing PySimpleGUI:
+
 ```bash
 $ pip install pysimplegui
 ```
 
+Here [Miniconda](https://docs.conda.io/en/latest/miniconda.html) is recommended, which provides a lightweight virtual environment for us.
+
+Now you are all set!
+
 ## Run
+
+Use the following command to run the program:
 
 ```bash
 $ python main.py
 ```
+
+I may release an executable file in the future, sorry for the inconvenience so far.
 
 ## Overview
 
@@ -79,6 +99,8 @@ subprocess.call([
 ```
 
 ## Appearance
+
+Here is what the GUI looks like. You can change the theme which you like.
 
 DarkTeal2 | DarkPurple | LightBrown3
 :-----:|:-----:|:-----:
