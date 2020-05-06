@@ -8,7 +8,7 @@
 
 <h2 align=center>Tiny GIF Converter</h2>
  
-This is a tiny gif converter for WeChat official account writers or bloggers. This converter takes in a video or gif file, then it converts or compresses the file to a gif image, which is compatible with WeChat official account. The program has been tested on the Mac OS X with Python 3.6 environment. Both FFmpeg and PySimpleGUI are cross-platform libraries, so it should be worked well on other OS theoretically. Please let me know if something went south in Windows or Linux.
+This is a tiny gif converter for WeChat official account writers or bloggers. This converter takes in a video or gif file, then it converts or compresses the file to a gif image, which is compatible with WeChat official account. The program has been tested on the Mac OS X with Python 3.6 environment. Both [FFmpeg](https://github.com/FFmpeg/FFmpeg) and [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI) are cross-platform libraries, so it should be worked well on other OS theoretically. Please let me know if something went south in Windows or Linux.
 
 ## Requirements 
 
@@ -51,7 +51,9 @@ Use the following command to run the program:
 $ python main.py
 ```
 
-I may release an executable file in the future, sorry for the inconvenience so far.
+I may release an executable file in the future, sorry for the inconvenience for now.
+
+Some files are provided in the sample folder just for testing. They are from [T.E.D.D. 1104](https://github.com/ikergarcia1996/Self-Driving-Car-in-Video-Games) and an [ICLR 2020 paper](https://openreview.net/pdf?id=SyxrxR4KPS) respectively.
 
 ## Overview
 
