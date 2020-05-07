@@ -57,9 +57,9 @@ for i in range(num_themes):
             # Output setting
             sg.Frame('Resolution FPS and FileName', [
                 [
-                    sg.Text('Res:', justification='left'),
+                    sg.Text('Width:', justification='left'),
                     sg.InputOptionMenu(
-                        ('320x240', '640x480', '800x600'), key='-Resolution-'),
+                        ('240', '320', '480', '800'), default_value='320', key='-Resolution-'),
                     sg.Text('Frames: 50', size=(10, 1),
                             justification='left', key='-Frames-')
                 ],
@@ -110,71 +110,75 @@ for i in range(num_themes):
                        default_element_size=(40, 1), grab_anywhere=False)
     windows.append(window)
 
-first_pass_1 = first_pass_2 = win_activ_0 = True
-win_activ_1 = win_activ_2 = not win_activ_0
+first_pass = [True, True]
+win_activ = [True, False, False]
 # Event Loop to process "events" and get the "values" of the inputs
 while True:
-    if win_activ_0:
+    if win_activ[0]:
         event, values = windows[0].read()
-    elif win_activ_1:
+    elif win_activ[1]:
         event, values = windows[1].read()
-    elif win_activ_2:
+    elif win_activ[2]:
         event, values = windows[2].read()
+
+    print(event)
 
     if event == '-Theme-0-':  # Theme 0 is selected
         # Active selected window
         windows[0].UnHide()
-        win_activ_0 = True
-        windows[0]['-Theme-0-'].update(win_activ_0)
+        win_activ[0] = True
+        windows[0]['-Theme-0-'].update(win_activ[0])
         # Hide other windows
-        if win_activ_1:
+        if win_activ[1]:
             windows[1].Hide()
-            win_activ_1 = False
-        elif win_activ_2:
+            win_activ[1] = False
+        elif win_activ[2]:
             windows[2].Hide()
-            win_activ_2 = False
+            win_activ[2] = False
 
     elif event == '-Theme-1-':  # Theme 1 is selected
         # Active selected window
-        win_activ_1 = True
-        if first_pass_1:
-            first_pass_1 = False
+        win_activ[1] = True
+        if first_pass[0]:
+            first_pass[0] = False
         else:
             windows[1].UnHide()
-            windows[1]['-Theme-1-'].update(win_activ_1)
+            windows[1]['-Theme-1-'].update(win_activ[1])
         # Hide other windows
-        if win_activ_0:
+        if win_activ[0]:
             windows[0].Hide()
-            win_activ_0 = False
-        elif win_activ_2:
+            win_activ[0] = False
+        elif win_activ[2]:
             windows[2].Hide()
-            win_activ_2 = False
+            win_activ[2] = False
 
     elif event == '-Theme-2-':  # Theme 2 is selected
         # Active selected window
-        win_activ_2 = True
-        if first_pass_2:
-            first_pass_2 = False
+        win_activ[2] = True
+        if first_pass[1]:
+            first_pass[1] = False
         else:
             windows[2].UnHide()
-            windows[2]['-Theme-2-'].update(win_activ_2)
+            windows[2]['-Theme-2-'].update(win_activ[2])
         # Hide other windows
-        if win_activ_0:
+        if win_activ[0]:
             windows[0].Hide()
-            win_activ_0 = False
-        elif win_activ_1:
+            win_activ[0] = False
+        elif win_activ[1]:
             windows[1].Hide()
-            win_activ_1 = False
+            win_activ[1] = False
 
     elif event in (None, 'Cancel'):  # if user closes window or clicks cancel
         break
 
     elif event in ('-FPS-Slider-', '-Duration-Slider-'):
-        fps = int(values['-FPS-Slider-'] * values['-Duration-Slider-'])
-        window['-Frames-'].update('Frames: ' + str(fps))
+        num_frames = int(values['-FPS-Slider-'] * values['-Duration-Slider-'])
+        act_window_idx = win_activ.index(True)
+        windows[act_window_idx]['-Frames-'].update('Frames: ' + str(num_frames))
 
     elif event == 'Convert':  # Start converting
-        window['-Output-'].update('Processing...')
+        act_window_idx = win_activ.index(True)
+        windows[act_window_idx]['-Output-'].update('Processing...')
 
         # Setting
         if values['-File-Path-'] == 'File Path':
@@ -199,7 +203,7 @@ while True:
                 start_time=start_time,
                 duration=str(values['-Duration-Slider-']),
                 fps=str(fps),
-                frame_size=frame_size,
+                frame_width=frame_size,
         ) == 'Done':
             break
 
