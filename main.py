@@ -1,3 +1,4 @@
+import re
 import PySimpleGUI as sg
 
 from convert_to_gif import gif_converter
@@ -43,7 +44,7 @@ for i in range(num_themes):
             sg.Text('Your File', size=(13, 1),
                     auto_size_text=False, justification='right'),
             sg.InputText('File Path', key='-File-Path-'),
-            sg.FileBrowse(),
+            sg.FileBrowse(key='-Browser-' + str(i)),
         ],
         [sg.Text('_' * split_line_size)],
 
@@ -59,7 +60,7 @@ for i in range(num_themes):
                 [
                     sg.Text('Width:', justification='left'),
                     sg.InputOptionMenu(
-                        ('240', '320', '480', '800'), default_value='320', key='-Resolution-'),
+                        ('240', '320', '480', '640', '800'), default_value='320', key='-Resolution-'),
                     sg.Text('Frames: 50', size=(10, 1),
                             justification='left', key='-Frames-')
                 ],
@@ -69,7 +70,7 @@ for i in range(num_themes):
                     sg.Text('Output dir:'),
                     sg.InputText(default_text='Output Path',
                                  size=(12, 1), key='-Out-Path-'),
-                    sg.FolderBrowse(key='-Out-Browse-'),
+                    sg.FolderBrowse(key='-Out-Browse-' + str(i)),
                 ]
             ]),
         ],
@@ -90,8 +91,8 @@ for i in range(num_themes):
         [
             sg.Text(size=(50, 1), auto_size_text=False,
                     justification='right', key='-Output-'),
-            sg.Button('Convert'),
-            sg.Button('Cancel'),
+            sg.Button('Convert', key='-Convert-' + str(i)),
+            sg.Button('Cancel', key='-Cancel-' + str(i)),
         ],
     ]
     layouts.append(layout)
@@ -110,6 +111,7 @@ for i in range(num_themes):
                        default_element_size=(40, 1), grab_anywhere=False)
     windows.append(window)
 
+start_convert = False
 first_pass = [True, True]
 win_activ = [True, False, False]
 # Event Loop to process "events" and get the "values" of the inputs
@@ -121,8 +123,7 @@ while True:
     elif win_activ[2]:
         event, values = windows[2].read()
 
-    print(event)
-
+    # print(event)
     if event == '-Theme-0-':  # Theme 0 is selected
         # Active selected window
         windows[0].UnHide()
@@ -168,19 +169,18 @@ while True:
             windows[1].Hide()
             win_activ[1] = False
 
-    elif event in (None, 'Cancel'):  # if user closes window or clicks cancel
+    # If user closes window or clicks cancel
+    elif event in (None, '-Cancel-0', '-Cancel-1', '-Cancel-2'):
         break
 
     elif event in ('-FPS-Slider-', '-Duration-Slider-'):
         num_frames = int(values['-FPS-Slider-'] * values['-Duration-Slider-'])
         act_window_idx = win_activ.index(True)
-        windows[act_window_idx]['-Frames-'].update('Frames: ' + str(num_frames))
+        windows[act_window_idx]['-Frames-'].update(
+            'Frames: ' + str(num_frames))
 
-    elif event == 'Convert':  # Start converting
-        act_window_idx = win_activ.index(True)
-        windows[act_window_idx]['-Output-'].update('Processing...')
+    elif event in ('-Convert-0', '-Convert-1', '-Convert-2'):  # Setup for converting
 
-        # Setting
         if values['-File-Path-'] == 'File Path':
             load_path = None
         else:
@@ -196,24 +196,61 @@ while True:
         fps = int(values['-FPS-Slider-'])
         frame_size = values['-Resolution-']
 
-        # Converting
-        if gif_converter(
-                load_path=load_path,
-                save_path=save_path,
-                start_time=start_time,
-                duration=str(values['-Duration-Slider-']),
-                fps=str(fps),
-                frame_width=frame_size,
-        ) == 'Done':
+        start_convert = True
+        break
+
+for window in windows:
+    window.close()
+
+
+if start_convert:
+    act_window_idx = win_activ.index(True)
+    if act_window_idx == 0:
+        sg.theme('DarkTeal2')
+    elif act_window_idx == 1:
+        sg.theme('DarkPurple')
+    elif act_window_idx == 2:
+        sg.theme('LightBrown3')
+
+    # Layout the processing window
+    num_frames = values['-Duration-Slider-'] * values['-FPS-Slider-']
+    num_frames = int(num_frames)
+    layout = [[sg.Text('ETA: ', size=(10, 1), justification='left', key='-ETA-')],
+              [sg.ProgressBar(num_frames, orientation='h',
+                              size=(20, 20), key='-PROGBAR-'),
+               sg.Text('0%', size=(5, 1), key='-PERCENT-')],
+              [sg.Cancel()]]
+
+    # Create the processing window
+    window = sg.Window('Processing...', layout)
+
+    # Converting
+    for msg in gif_converter(
+        load_path=load_path,
+        save_path=save_path,
+        start_time=start_time,
+        duration=str(values['-Duration-Slider-']),
+        fps=str(fps),
+        frame_width=frame_size,
+    ):
+        event, values = window.read(timeout=0)
+
+        if event == 'Cancel' or event is None:
             break
 
+        print(msg)
+        data = re.findall(r"\d+\d*", msg)
+        if len(data) == 3:
+            window['-PROGBAR-'].update_bar(int(data[0]))
+            window['-ETA-'].update('ETA: ' + data[-1] + ' s')
+            window['-PERCENT-'].update(str(100 *
+                                           int(data[0]) / num_frames) + '%')
+    window.close()
 
-window.close()
-
-if save_path is None:
-    save_path = 'default path'
-
-sg.popup(
-    'Finish',
-    'The converted file is saved at {}.'.format(save_path),
-)
+    # Popup finish message
+    if save_path is None:
+        save_path = 'default path'
+    sg.popup(
+        'Finish!',
+        'The converted file is saved at {}.'.format(save_path),
+    )

@@ -109,6 +109,10 @@ DarkTeal2 | DarkPurple | LightBrown3
 <img width="300" src="./assets/screen_shot_0.png"> | <img width="300" src="./assets/screen_shot_1.png">|<img width="300" src="./assets/screen_shot_2.png">
 
 
+## Sample
+
+<img width="640" src="./assets/demo.gif">
+
 ## License
 
 [Apache License 2.0](LICENSE)

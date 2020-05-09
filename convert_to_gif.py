@@ -35,13 +35,20 @@ def gif_converter(
 
     # Create GIF
     out_file_name = os.path.basename(load_path) + '_converted.gif'
-    subprocess.call("gifski --fps " + fps + " -o " +
-                    os.path.join(save_path, out_file_name) +
-                    " tmp/frame*.png", shell=True)
+    ex = subprocess.Popen("gifski --fps " + fps + " -o " +
+                          os.path.join(save_path, out_file_name) +
+                          " tmp/frame*.png", 
+                          stdout=subprocess.PIPE,
+                          universal_newlines=True,
+                          shell=True)
 
+    while ex.poll() == None:
+        yield ex.stdout.readline()
+        # print(ex.stdout.readline())
+    status = ex.wait()
     subprocess.call(['rm', '-rf', 'tmp/'])
 
-    return 'Done'
+    return True
 
 
 if __name__ == "__main__":
