@@ -111,7 +111,7 @@ DarkTeal2 | DarkPurple | LightBrown3
 
 ## Sample
 
-<img width="640" src="./assets/demo.gif">
+<img width="480" src="./assets/demo.gif">
 
 ## License
 

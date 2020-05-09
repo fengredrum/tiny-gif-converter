@@ -225,6 +225,7 @@ if start_convert:
     window = sg.Window('Processing...', layout)
 
     # Converting
+    cancelled = False
     for msg in gif_converter(
         load_path=load_path,
         save_path=save_path,
@@ -236,6 +237,7 @@ if start_convert:
         event, values = window.read(timeout=0)
 
         if event == 'Cancel' or event is None:
+            cancelled = True
             break
 
         print(msg)
@@ -248,9 +250,10 @@ if start_convert:
     window.close()
 
     # Popup finish message
-    if save_path is None:
-        save_path = 'default path'
-    sg.popup(
-        'Finish!',
-        'The converted file is saved at {}.'.format(save_path),
-    )
+    if not cancelled:
+        if save_path is None:
+            save_path = 'default path'
+        sg.popup(
+            'Finish!',
+            'The converted file is saved at {}.'.format(save_path),
+        )
