@@ -10,7 +10,7 @@
  
 This is a tiny gif converter aiming to generate high quality yet compact gif images for WeChat official account writers or bloggers. This converter takes in a video or gif file, then it converts or compresses the file to a gif image, which is compatible with WeChat official account. The program has been tested on the Mac OS X with Python 3.6 environment. 
 
-The converter uses [FFmpeg](https://github.com/FFmpeg/FFmpeg) to extract frames, then it uses [Gifski](https://gif.ski/) to generate high quality gif images. The GUI of this program is created by using [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI), just like its name, which is a simple people-friendly Python GUI. Both [FFmpeg](https://github.com/FFmpeg/FFmpeg) and [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI) are cross-platform libraries, so it should be worked well on other OS theoretically. Please let me know if something went south in Windows or Linux.
+The converter uses [FFmpeg](https://github.com/FFmpeg/FFmpeg) to extract frames, then it uses [Gifski](https://gif.ski/) to generate high quality gif images. The GUI of this program is created by using [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI), just like its name, which is a simple and people-friendly Python GUI. Both [FFmpeg](https://github.com/FFmpeg/FFmpeg) and [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI) are cross-platform libraries, so it should be worked well on other OS theoretically. Please let me know if something went south in Windows or Linux.
 
 ## Requirements 
 
