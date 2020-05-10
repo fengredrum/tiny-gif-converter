@@ -14,6 +14,13 @@ This is a tiny gif converter aiming to generate high quality yet compact gif ima
 
 The converter uses [FFmpeg](https://github.com/FFmpeg/FFmpeg) to extract frames, then it uses [Gifski](https://gif.ski/) to generate high quality gif images. The GUI of this program is created by using [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI), just like its name, which is a simple and people-friendly Python GUI. Both [FFmpeg](https://github.com/FFmpeg/FFmpeg) and [PySimpleGUI](https://github.com/PySimpleGUI/PySimpleGUI) are cross-platform libraries, so it should be worked well on other OS theoretically. Please let me know if something went south in Windows or Linux.
 
+If you don't have a Python interpreter on your computer, you can [download the packaged app](https://github.com/fengredrum/tiny-gif-converter/releases/download/v0.1-alpha/tiny-gif-converter.MacOS.zip). Unzip it then run the following command in Terminal:
+
+``` bash
+$ cd /Path of the app
+$ ./TGC
+```
+
 ## Appearance
 
 Here is what the GUI looks like. You can change the theme which you like. Once you setup parameters, click the Convert button to start. The process just takes a few seconds.
@@ -79,7 +86,9 @@ Use the following command to run the program:
 $ python main.py
 ```
 
-I may release an executable file in the future, sorry for the inconvenience for now.
+~~I may release an executable file in the future, sorry for the inconvenience for now.~~
+
+The first packaged app released.
 
 Some files are provided in the sample folder just for testing. They are from [T. E. D. D. 1104](https://github.com/ikergarcia1996/Self-Driving-Car-in-Video-Games) and an [ICLR 2020 paper](https://openreview.net/pdf?id=SyxrxR4KPS) respectively.
 
