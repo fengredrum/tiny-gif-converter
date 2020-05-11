@@ -90,7 +90,7 @@ $ ./TGC
 
 If you still don't want to install anything, you also can try it on Colab.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fengredrum/tiny-gif-converter/notebook/tiny-gif-converter-demo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fengredrum/tiny-gif-converter/blob/master/notebook/tiny-gif-converter-demo.ipynb)
 
 Some files are provided in the sample folder just for testing. They are from [T. E. D. D. 1104](https://github.com/ikergarcia1996/Self-Driving-Car-in-Video-Games) and an [ICLR 2020 paper](https://openreview.net/pdf?id=SyxrxR4KPS) respectively.
 
