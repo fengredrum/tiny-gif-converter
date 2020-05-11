@@ -1,4 +1,4 @@
-![License Badge](https://img.shields.io/badge/FFmpeg-4.2.2-ff69b4) ![License Badge](https://img.shields.io/badge/PySimpleGUI-4.18.2-orange) 
+![License Badge](https://img.shields.io/badge/FFmpeg-4.2.2-ff69b4) ![License Badge](https://img.shields.io/badge/PySimpleGUI-4.18.2-orange) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/fengredrum/tiny-gif-converter/blob/master/notebook/tiny-gif-converter-demo.ipynb)
 
 ![License Badge](https://img.shields.io/badge/python-3.5%2B-blue) ![License Badge](https://img.shields.io/badge/platform-osx--64-lightgrey) ![License Badge](https://img.shields.io/badge/license-Apache--2.0-green)
 
