@@ -156,7 +156,3 @@ while ex.poll() == None:
 2. http://blog.pkh.me/p/21-high-quality-gif-with-ffmpeg.html
 
 3. https://stackoverflow.com/questions/42980663/ffmpeg-high-quality-animated-gif
-
-## License
-
-[Apache License 2.0](LICENSE)
